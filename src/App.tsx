@@ -1,5 +1,12 @@
+import { AppSidebar } from "./components/app-sidebar";
+import { SidebarProvider } from "./components/ui/sidebar";
+
 function App() {
-  return <div className="text-red-400">hey</div>;
+  return (
+    <SidebarProvider>
+      <AppSidebar />
+    </SidebarProvider>
+  );
 }
 
 export default App;
