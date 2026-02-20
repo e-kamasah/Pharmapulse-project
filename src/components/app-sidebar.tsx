@@ -27,8 +27,8 @@ import { navMain, selfServiceLinks } from "@/constants";
 
 const data = {
   user: {
-    name: "shadcn",
-    email: "m@example.com",
+    name: "Benson Yeboah",
+    email: "ybenson96@gmail.com",
     avatar: "/avatars/shadcn.jpg",
   },
   teams: [

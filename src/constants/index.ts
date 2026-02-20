@@ -1,22 +1,31 @@
-import { BadgeCentIcon, BotIcon, PillIcon, UsersIcon } from "lucide-react";
+import {
+  BadgeCentIcon,
+  BotIcon,
+  ChartLine,
+  LayoutDashboardIcon,
+  PillIcon,
+  Users2Icon,
+} from "lucide-react";
 
 export const navMain = [
+  {
+    title: "Dashboard",
+    url: "/",
+    icon: LayoutDashboardIcon,
+    isActive: true,
+  },
   {
     title: "Inventory Management",
     url: "#",
     icon: PillIcon,
-    isActive: true,
+    isActive: false,
     items: [
       {
-        title: "History",
+        title: "Products / Drugs",
         url: "#",
       },
       {
-        title: "Starred",
-        url: "#",
-      },
-      {
-        title: "Settings",
+        title: "Suppliers",
         url: "#",
       },
     ],
@@ -24,7 +33,8 @@ export const navMain = [
   {
     title: "User Management",
     url: "#",
-    icon: UsersIcon,
+    icon: Users2Icon,
+    isActive: false,
     items: [
       {
         title: "Genesis",
@@ -44,6 +54,7 @@ export const navMain = [
     title: "Sales",
     url: "#",
     icon: BadgeCentIcon,
+    isActive: false,
     items: [
       {
         title: "Introduction",
@@ -66,6 +77,11 @@ export const navMain = [
 ];
 
 export const selfServiceLinks = [
+  {
+    name: "Analytics",
+    url: "#",
+    icon: ChartLine,
+  },
   {
     name: "AI Assistant",
     url: "#",
