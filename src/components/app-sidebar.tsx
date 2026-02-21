@@ -1,18 +1,6 @@
 import * as React from "react";
-import {
-  AudioWaveform,
-  BookOpen,
-  Bot,
-  Command,
-  Frame,
-  GalleryVerticalEnd,
-  Map,
-  PieChart,
-  Settings2,
-  SquareTerminal,
-} from "lucide-react";
+import { AudioWaveform, Command, GalleryVerticalEnd } from "lucide-react";
 
-import { NavMain } from "@/components/nav-main";
 import { NavProjects } from "@/components/nav-projects";
 import { NavUser } from "@/components/nav-user";
 import { TeamSwitcher } from "@/components/team-switcher";
@@ -24,11 +12,12 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 import { navMain, selfServiceLinks } from "@/constants";
+import NavMain from "./nav-main";
 
 const data = {
   user: {
     name: "Benson Yeboah",
-    email: "ybenson96@gmail.com",
+    email: "m@example.com",
     avatar: "/avatars/shadcn.jpg",
   },
   teams: [

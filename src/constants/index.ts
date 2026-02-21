@@ -12,41 +12,37 @@ export const navMain = [
     title: "Dashboard",
     url: "/",
     icon: LayoutDashboardIcon,
-    isActive: true,
   },
   {
     title: "Inventory Management",
-    url: "#",
     icon: PillIcon,
-    isActive: false,
     items: [
       {
         title: "Products / Drugs",
-        url: "#",
+        url: "/inventory/drugs",
       },
       {
         title: "Suppliers",
-        url: "#",
+        url: "/inventory/suppliers",
       },
     ],
   },
   {
     title: "User Management",
-    url: "#",
+    url: "/user-management",
     icon: Users2Icon,
-    isActive: false,
     items: [
       {
         title: "Genesis",
-        url: "#",
+        url: "/user-management/genesis",
       },
       {
         title: "Explorer",
-        url: "#",
+        url: "/user-management/explorer",
       },
       {
         title: "Quantum",
-        url: "#",
+        url: "/user-management/quantum",
       },
     ],
   },
