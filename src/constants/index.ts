@@ -10,7 +10,7 @@ import {
 export const navMain = [
   {
     title: "Dashboard",
-    url: "/",
+    url: "/app",
     icon: LayoutDashboardIcon,
   },
   {
@@ -19,30 +19,34 @@ export const navMain = [
     items: [
       {
         title: "Products / Drugs",
-        url: "/inventory/drugs",
+        url: "/app/inventory/drugs",
+      },
+      {
+        title: "Purchases",
+        url: "/app/inventory/purchases",
       },
       {
         title: "Suppliers",
-        url: "/inventory/suppliers",
+        url: "/app/inventory/suppliers",
       },
     ],
   },
   {
     title: "User Management",
-    url: "/user-management",
+    url: "/app/user-management",
     icon: Users2Icon,
     items: [
       {
         title: "Genesis",
-        url: "/user-management/genesis",
+        url: "/app/user-management/genesis",
       },
       {
         title: "Explorer",
-        url: "/user-management/explorer",
+        url: "/app/user-management/explorer",
       },
       {
         title: "Quantum",
-        url: "/user-management/quantum",
+        url: "/app/user-management/quantum",
       },
     ],
   },

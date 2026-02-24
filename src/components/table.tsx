@@ -57,11 +57,7 @@ export default function ElegantTable() {
   }, [search, roleFilter]);
 
   return (
-    <div className="p-6 max-w-6xl mx-auto">
-      <h2 className="text-2xl font-semibold text-gray-900 mb-6">
-        Team Members
-      </h2>
-
+    <div className="mx-auto">
       {/* Search + Filter */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 gap-4">
         <input
