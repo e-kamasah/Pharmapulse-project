@@ -18,12 +18,12 @@ export const navMain = [
     icon: PillIcon,
     items: [
       {
-        title: "Products / Drugs",
-        url: "/app/inventory/drugs",
-      },
-      {
         title: "Purchases",
         url: "/app/inventory/purchases",
+      },
+      {
+        title: "Products / Drugs",
+        url: "/app/inventory/drugs",
       },
       {
         title: "Suppliers",

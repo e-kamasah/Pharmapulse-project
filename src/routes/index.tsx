@@ -1,31 +1,72 @@
+import React, { Suspense } from "react";
 import AppLayout from "@/layout/app-layout";
 import AuthLayout from "@/layout/auth-layout";
-import Dashboard from "@/pages/dashboard";
-import DrugsPage from "@/pages/drugs";
-import SuppliersPage from "@/pages/suppliers";
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
+import ErrorPage from "@/pages/error-page";
+import NotFound from "@/pages/not-found";
+import { RequireAuth } from "./RequireAuth";
+
+const Dashboard = React.lazy(() => import("@/pages/dashboard"));
+const DrugsPage = React.lazy(() => import("@/pages/drugs"));
+const CreateDrug = React.lazy(() => import("@/pages/create-drug"));
+const SuppliersPage = React.lazy(() => import("@/pages/suppliers"));
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <AuthLayout />,
+    errorElement: <ErrorPage />,
   },
   {
     path: "/app",
-    element: <AppLayout />,
+    element: <RequireAuth />,
     children: [
       {
-        index: true,
-        element: <Dashboard />,
-      },
-      {
-        path: "inventory/drugs",
-        element: <DrugsPage />,
-      },
-      {
-        path: "inventory/suppliers",
-        element: <SuppliersPage />,
+        element: <AppLayout />,
+        children: [
+          {
+            index: true,
+            element: (
+              <Suspense fallback={<div>Loading...</div>}>
+                <Dashboard />
+              </Suspense>
+            ),
+          },
+          {
+            path: "inventory/drugs",
+            element: (
+              <Suspense fallback={<div>Loading...</div>}>
+                <DrugsPage />
+              </Suspense>
+            ),
+          },
+          {
+            path: "inventory/drugs/create",
+            element: (
+              <Suspense fallback={<div>Loading...</div>}>
+                <CreateDrug />
+              </Suspense>
+            ),
+          },
+          {
+            path: "inventory/suppliers",
+            element: (
+              <Suspense fallback={<div>Loading...</div>}>
+                <SuppliersPage />
+              </Suspense>
+            ),
+          },
+          {
+            path: "",
+            element: <Navigate to="/app" />,
+          },
+        ],
+        errorElement: <ErrorPage />,
       },
     ],
+  },
+  {
+    path: "*",
+    element: <NotFound />,
   },
 ]);
