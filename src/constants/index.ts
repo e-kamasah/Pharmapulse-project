@@ -37,16 +37,16 @@ export const navMain = [
     icon: Users2Icon,
     items: [
       {
-        title: "Genesis",
-        url: "/app/user-management/genesis",
+        title: "Pharmacists",
+        url: "/app/user-management/pharmacists",
       },
       {
-        title: "Explorer",
-        url: "/app/user-management/explorer",
+        title: "Admins",
+        url: "/app/user-management/admins",
       },
       {
-        title: "Quantum",
-        url: "/app/user-management/quantum",
+        title: "Sales Reps",
+        url: "/app/user-management/sales-reps",
       },
     ],
   },
