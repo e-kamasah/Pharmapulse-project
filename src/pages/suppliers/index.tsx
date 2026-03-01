@@ -1,5 +1,5 @@
 import SiteHeader from "@/components/site-header";
-import CustomTable from "@/components/table";
+import CustomTable from "@/components/app-components/app-table";
 
 const SuppliersPage = () => {
   return (

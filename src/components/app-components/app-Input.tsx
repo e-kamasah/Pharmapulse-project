@@ -1,6 +1,6 @@
 import React, { forwardRef, useId } from "react";
-import { FieldLabel } from "./ui/field";
 import clsx from "clsx";
+import { FieldLabel } from "../ui/field";
 
 type CustomInputProps = {
   label?: string;

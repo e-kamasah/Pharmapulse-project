@@ -31,7 +31,7 @@ interface AiExtractedData {
   packSize?: string;
 }
 
-export function NewProductDialog() {
+const NewProductButton = () => {
   const [step, setStep] = useState<Step>("select");
   const [loading, setLoading] = useState(false);
 
@@ -386,4 +386,6 @@ export function NewProductDialog() {
       </DialogContent>
     </Dialog>
   );
-}
+};
+
+export default NewProductButton;

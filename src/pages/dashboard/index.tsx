@@ -25,6 +25,9 @@ const Dashboard = () => {
         icon: <IconTrendingUp />,
       },
       footerNote: "42 transactions completed today",
+      bg: "bg-sky-100/50",
+      border: "border-sky-200",
+      text: "text-sky-700",
     },
     {
       title: "This Month Revenue",
@@ -35,6 +38,9 @@ const Dashboard = () => {
         icon: <IconTrendingUp />,
       },
       footerNote: "Total revenue generated this month",
+      bg: "bg-green-100/50",
+      border: "border-green-200",
+      text: "text-green-700",
     },
     {
       title: "Low Stock Items",
@@ -45,6 +51,9 @@ const Dashboard = () => {
         icon: <IconTrendingDown />,
       },
       footerNote: "Items below reorder level",
+      bg: "bg-violet-200/50",
+      border: "border-violet-400/50",
+      text: "text-violet-700",
     },
     {
       title: "Expiring Soon",
@@ -55,6 +64,9 @@ const Dashboard = () => {
         icon: <IconTrendingDown />,
       },
       footerNote: "Inventory at risk of expiry",
+      bg: "bg-yellow-100/50",
+      border: "border-yellow-300/50",
+      text: "text-yellow-700",
     },
   ];
 
@@ -69,7 +81,10 @@ const Dashboard = () => {
             <div className="*:data-[slot=card]:from-primary/5 *:data-[slot=card]:to-card dark:*:data-[slot=card]:bg-card grid grid-cols-1 gap-4 px-2 *:data-[slot=card]:bg-gradient-to-t *:data-[slot=card]:shadow-xs lg:px-6 @xl/main:grid-cols-2 @5xl/main:grid-cols-4">
               {cardData?.map((card, index) => {
                 return (
-                  <Card key={index} className="@container/card">
+                  <Card
+                    key={index}
+                    className={`@container/card border ${card?.bg} ${card?.border} shadow`}
+                  >
                     <CardHeader>
                       <CardDescription>{card?.title}</CardDescription>
                       <CardTitle className="text-xl font-semibold tabular-nums @[250px]/card:text-2xl">
@@ -105,10 +120,34 @@ const Dashboard = () => {
                 </div>
               </div>
               <div className="col-span-8 lg:col-span-2">
-                <div className="rounded-lg border bg-card flex items-center justify-center gap-2">
-                  <div className="text-center flex items-center justify-center space-x-2">
-                    <h1 className="font-semibold text-md">LIVE UPDATES</h1>
-                    <IconTrendingUp className="mx-auto my-4 h-8 w-8 text-green-500" />
+                <div className="space-y-4 p-4">
+                  {/* Header with live indicator */}
+                  <div className="flex items-center justify-between border-b pb-2">
+                    <span className="font-semibold">LIVE UPDATES</span>
+                    <div className="flex items-center gap-1">
+                      <div className="h-2 w-2 animate-pulse rounded-full bg-red-500"></div>
+                      <span className="text-xs text-muted-foreground">
+                        Live
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Dynamic content - can cycle through different views */}
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm">Current Shift Sales</span>
+                      <span className="font-bold text-green-600">
+                        GHS 2,450
+                      </span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm">Transactions</span>
+                      <span>42</span>
+                    </div>
+                    <div className="rounded bg-blue-50 p-2 text-center">
+                      <p className="text-xs font-medium">New order received!</p>
+                      <p className="text-xs">Table 5 - GHS 230</p>
+                    </div>
                   </div>
                 </div>
               </div>

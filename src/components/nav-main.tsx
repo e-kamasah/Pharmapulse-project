@@ -52,7 +52,7 @@ const NavMain = ({
           if (!hasChildren) {
             return (
               <SidebarMenuItem key={item.title}>
-                <NavLink to={item.url}>
+                <NavLink to={item.url} end>
                   {({ isActive }) => (
                     <SidebarMenuButton
                       tooltip={item.title}
@@ -102,7 +102,7 @@ const NavMain = ({
                   <SidebarMenuSub>
                     {item.items?.map((subItem) => (
                       <SidebarMenuSubItem key={subItem.title}>
-                        <NavLink to={subItem.url}>
+                        <NavLink to={subItem.url} end>
                           {({ isActive }) => (
                             <SidebarMenuSubButton
                               className={`w-full transition-colors ${

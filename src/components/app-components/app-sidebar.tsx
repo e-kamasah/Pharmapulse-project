@@ -12,7 +12,7 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 import { navMain, selfServiceLinks } from "@/constants";
-import NavMain from "./nav-main";
+import NavMain from "../nav-main";
 
 const data = {
   user: {
@@ -22,17 +22,17 @@ const data = {
   },
   teams: [
     {
-      name: "Acme Inc",
+      name: "Main Branch",
       logo: GalleryVerticalEnd,
       plan: "Enterprise",
     },
     {
-      name: "Acme Corp.",
+      name: "Legon Campus",
       logo: AudioWaveform,
       plan: "Startup",
     },
     {
-      name: "Evil Corp.",
+      name: "Accra Central",
       logo: Command,
       plan: "Free",
     },
