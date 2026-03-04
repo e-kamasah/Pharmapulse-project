@@ -25,6 +25,7 @@ const CustomInput = forwardRef<HTMLInputElement, CustomInputProps>(
   ) => {
     const generatedId = useId();
     const inputId = id ?? generatedId;
+
     const describedById = error
       ? `${inputId}-error`
       : helperText

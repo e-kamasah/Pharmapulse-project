@@ -10,11 +10,22 @@ const Dashboard = React.lazy(() => import("@/pages/dashboard"));
 const DrugsPage = React.lazy(() => import("@/pages/drugs"));
 const CreateDrug = React.lazy(() => import("@/pages/create-drug"));
 const SuppliersPage = React.lazy(() => import("@/pages/suppliers"));
+const SignIn = React.lazy(() => import("@/pages/signIn"));
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <AuthLayout />,
+    children: [
+      {
+        index: true,
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <SignIn />
+          </Suspense>
+        ),
+      },
+    ],
     errorElement: <ErrorPage />,
   },
   {

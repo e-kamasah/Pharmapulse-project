@@ -1,11 +1,9 @@
-import React, { useContext } from "react";
+import useAuthStore from "@/zustand/auth-store";
 import { Navigate, Outlet } from "react-router-dom";
 
-const AuthContext = React.createContext({ isAuthenticated: true });
-
 export const RequireAuth = () => {
-  const { isAuthenticated } = useContext(AuthContext);
-  if (!isAuthenticated) {
+  const user = useAuthStore((state) => state.user)?.user;
+  if (!user) {
     return <Navigate to="/" replace />;
   }
   return <Outlet />;

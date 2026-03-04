@@ -1,4 +1,3 @@
-import * as React from "react";
 import { ChevronsUpDown, Plus } from "lucide-react";
 
 import {
@@ -20,21 +19,31 @@ import { useUrlBoolean } from "@/hooks/use-url-state";
 import AppModal from "./app-components/app-modal";
 import { Button } from "./ui/button";
 import NewBranchForm from "./app-components/new-branch-form";
+import useAuthStore from "@/zustand/auth-store";
+import useGetBranches from "@/hooks/use-get-branches";
+import type { Branch, Maybe } from "@/gql/graphql";
+import { getInitials } from "@/lib/utils";
+import Skeleton from "./app-components/app-skeleton";
+import useAppStore from "@/zustand/app-store";
 
-const TeamSwitcher = ({
-  teams,
-}: {
-  teams: {
-    name: string;
-    logo: React.ElementType;
-    plan: string;
-  }[];
-}) => {
+const TeamSwitcher = () => {
   const { isMobile } = useSidebar();
-  const [activeTeam, setActiveTeam] = React.useState(teams[0]);
   const [showModal, setShowModal, clearShowModal] = useUrlBoolean("show-modal");
+  const user = useAuthStore((state) => state.user)?.user;
+  const setActiveBranch = useAppStore((state) => state.setActiveBranch);
+  const activeBranch = useAppStore((state) => state.activeBranch);
 
-  if (!activeTeam) {
+  const { branches: allBranches, loading } = useGetBranches({
+    filter: {
+      pharmacy: user?.pharmacy?._id,
+    },
+  });
+
+  const branches = allBranches.filter(
+    (branch) => branch?._id !== activeBranch?._id,
+  );
+
+  if (!activeBranch) {
     return null;
   }
 
@@ -49,13 +58,15 @@ const TeamSwitcher = ({
                 className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
               >
                 <div className="bg-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
-                  <activeTeam.logo className="size-4" />
+                  <span className="text-white text-sm font-semibold p-2">
+                    {getInitials(activeBranch?.name || "")}
+                  </span>
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-medium">
-                    Pill Point Pharmacy
+                    {user?.pharmacy?.name}
                   </span>
-                  <span className="truncate text-xs">{activeTeam?.name}</span>
+                  <span className="truncate text-xs">{activeBranch?.name}</span>
                 </div>
                 <ChevronsUpDown className="ml-auto" />
               </SidebarMenuButton>
@@ -69,19 +80,36 @@ const TeamSwitcher = ({
               <DropdownMenuLabel className="text-muted-foreground text-xs">
                 Branches
               </DropdownMenuLabel>
-              {teams.map((team, index) => (
-                <DropdownMenuItem
-                  key={team.name}
-                  onClick={() => setActiveTeam(team)}
-                  className="gap-2 p-2"
-                >
-                  <div className="flex size-6 items-center justify-center rounded-md border">
-                    <team.logo className="size-3.5 shrink-0" />
-                  </div>
-                  {team.name}
-                  <DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut>
-                </DropdownMenuItem>
-              ))}
+              {loading ? (
+                <div className="space-y-2 p-2">
+                  {Array.from({ length: 3 }).map((_, i) => (
+                    <div key={i} className="flex items-center gap-2">
+                      <Skeleton width="w-6" height="h-6" variant="circle" />
+                      <Skeleton width="w-32" height="h-4" />
+                    </div>
+                  ))}
+                </div>
+              ) : branches?.length ? (
+                branches.map((branch: Maybe<Branch>, index) => (
+                  <DropdownMenuItem
+                    onClick={() => setActiveBranch(branch)}
+                    key={branch?._id}
+                    className="gap-2 p-2"
+                  >
+                    <div className="flex size-6 items-center justify-center rounded-md border">
+                      <span className="text-muted-foreground text-xs p-2">
+                        {getInitials(branch?.name || "")}
+                      </span>
+                    </div>
+                    {branch?.name}
+                    <DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut>
+                  </DropdownMenuItem>
+                ))
+              ) : (
+                <div className="p-2 text-xs text-muted-foreground">
+                  No branches found
+                </div>
+              )}
               <DropdownMenuSeparator />
               <DropdownMenuItem
                 onClick={() => setShowModal((v) => !v)}
