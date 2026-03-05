@@ -25,3 +25,20 @@ export const SIGN_IN = gql`
     }
   }
 `;
+
+export const CREATE_BRANCH = gql`
+  mutation CreateBranch($payload: createBranchContent!) {
+    createBranch(payload: $payload) {
+      _id
+      name
+      phone
+      address
+      pharmacy {
+        _id
+        name
+        phone
+        email
+      }
+    }
+  }
+`;

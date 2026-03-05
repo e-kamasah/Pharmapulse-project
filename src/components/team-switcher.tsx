@@ -17,7 +17,6 @@ import {
 } from "@/components/ui/sidebar";
 import { useUrlBoolean } from "@/hooks/use-url-state";
 import AppModal from "./app-components/app-modal";
-import { Button } from "./ui/button";
 import NewBranchForm from "./app-components/new-branch-form";
 import useAuthStore from "@/zustand/auth-store";
 import useGetBranches from "@/hooks/use-get-branches";
@@ -44,7 +43,7 @@ const TeamSwitcher = () => {
   );
 
   if (!activeBranch) {
-    return null;
+    return setActiveBranch(branches?.[0] || null);
   }
 
   return (
@@ -132,16 +131,6 @@ const TeamSwitcher = () => {
         onClose={() => clearShowModal()}
         title="Create New Branch"
         description="This is to create a new branch under your pharmacy."
-        footer={
-          <>
-            <Button variant="outline" onClick={() => clearShowModal()}>
-              Cancel
-            </Button>
-            <Button type="submit" form="new-branch-form">
-              Create
-            </Button>
-          </>
-        }
       >
         <NewBranchForm />
       </AppModal>

@@ -1,7 +1,6 @@
 import { GalleryVerticalEnd } from "lucide-react";
 import { NavLink, Outlet } from "react-router-dom";
 import pharm from "../assets/images/pharm.jpg";
-import { Toaster } from "@/components/ui/sonner";
 import AppToaster from "@/components/app-components/app-toaster";
 
 const AuthLayout = () => {
