@@ -2,7 +2,6 @@ import * as React from "react";
 import { AudioWaveform, Command, GalleryVerticalEnd } from "lucide-react";
 
 import { NavProjects } from "@/components/nav-projects";
-import { TeamSwitcher } from "@/components/team-switcher";
 import {
   Sidebar,
   SidebarContent,
@@ -11,7 +10,6 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 import { navMain, selfServiceLinks } from "@/constants";
-import NavMain from "../nav-main";
 import NavUser from "../nav-user";
 
 const data = {
@@ -44,11 +42,9 @@ const data = {
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
-      <SidebarHeader>
-        <TeamSwitcher />
-      </SidebarHeader>
+      <SidebarHeader>{/* <TeamSwitcher /> */}</SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
+        {/* <NavMain items={data.navMain} /> */}
         <NavProjects projects={data.projects} />
       </SidebarContent>
       <SidebarFooter>
