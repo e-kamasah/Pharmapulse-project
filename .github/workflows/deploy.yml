@@ -16,11 +16,14 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'  
           
-      - name: Install dependencies
-        run: npm ci
-        
+      - name: Clean install dependencies
+        run: |
+          # Remove problematic files first
+          rm -rf node_modules package-lock.json
+          npm install
+          
       - name: Build project
         run: npm run build
         env:
@@ -37,18 +40,12 @@ jobs:
         run: |
           if [ "${{ github.ref_name }}" = "main" ]; then
             BUCKET="pharmapulse-frontend"
-            echo "🚀 Deploying to PRODUCTION: $BUCKET"
           else
             BUCKET="pharmapulse-frontend-staging"
-            echo "🧪 Deploying to STAGING: $BUCKET"
           fi
           
           aws s3 sync dist/ s3://$BUCKET --delete
           
       - name: Print deployment URL
         run: |
-          if [ "${{ github.ref_name }}" = "main" ]; then
-            echo "✅ Production site: http://pharmapulse-frontend.s3-website-us-east-1.amazonaws.com"
-          else
-            echo "✅ Staging site: http://pharmapulse-frontend-staging.s3-website-us-east-1.amazonaws.com"
-          fi
+          echo "✅ Site live at: http://pharmapulse-frontend.s3-website-us-east-1.amazonaws.com"
